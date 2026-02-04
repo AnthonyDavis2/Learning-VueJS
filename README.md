@@ -1,5 +1,5 @@
 # Learning Vue.js
-* vuejs.org/guide/quick-start.html *
+*vuejs.org/guide/quick-start.html*
 
 #### Dependencies
 - Node.js 
