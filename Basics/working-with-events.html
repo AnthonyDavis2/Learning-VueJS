@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+        <!-- importing vue script reference -->
+        <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+        <style>
+            .box {
+                background: red;
+                width:200px; 
+                height:200px; 
+            }
+        </style>
+        <title>Working With Events</title>
+    </head>
+    <body>
+        <div id="app">
+            <div class="box" v-on:mouseover="getCoord">
+                Hover Me
+            </div>
+            <p>{{ coord.x}}, {{ coord.y}}</p>
+            <hr/>
+            <h1>{{ name }}</h1>
+            <hr/>
+            <div v-on:click="updatedName">
+                Click Me
+            </div>
+            <hr/>
+            <div v-on:dblClick="updatedNameTwo">
+                Double Click Me
+            </div>
+        </div>
+    </body>
+    <script>
+        const { createApp, ref } = Vue;
+        createApp({
+            setup(){
+                const name = ref('Anthony');
+
+                function updatedName(){ 
+                    name.value = 'Davis'
+                }
+
+                function updatedNameTwo(){ 
+                    name.value = 'This Guy'
+                }
+
+                const coord = ref({x:0,y:0}); 
+
+                function getCoord(event){
+                    coord.value.x = event.clientX;
+                    coord.value.y = event.clientY;
+                }
+                
+                return { name, updatedName, updatedNameTwo, coord, getCoord }
+            }
+        }).mount('#app')
+    </script>
+</html>

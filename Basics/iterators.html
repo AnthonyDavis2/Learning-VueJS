@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+        <!-- importing vue script reference -->
+        <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+        <title>Iterators</title>
+    </head>
+    <body>
+        <div id="app">
+            <p v-for="(name,index) in names">
+                {{ name }} : {{ index }}
+            </p>
+            <hr/>
+            <ul>
+                <li v-for="(car,index) in cars">
+                    {{car.brand}}: {{index}}
+                </li>
+            </ul>
+            <hr/>
+            <ul>
+                <li v-for="(value,key,index) in user">
+                    {{index}} - {{key}} : {{value}}
+                </li>
+            </ul>
+        </div>
+    </body>
+    <script>
+        const { createApp, ref } = Vue;
+        createApp({
+            setup(){
+                const names = ref(['Anthony','John','Andrew','Steve'])
+                const cars = ref([
+                    {brand:'Ferrari',color:'Red'},
+                    {brand:'Lamborghini', color:'Yellow'},
+                    {brand:'Porsche',color:'White'}
+                ])
+                const user = { 
+                    name:'Anthony',
+                    lastName:'Davis',
+                    age:25
+                }
+                
+                return { names, cars, user}
+            }
+        }).mount('#app')
+    </script>
+</html>

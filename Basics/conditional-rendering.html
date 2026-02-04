@@ -7,18 +7,45 @@
 
         <!-- importing vue script reference -->
         <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
-        <title>Title Goes Here</title>
+        <title>Conditional Rendering</title>
     </head>
     <body>
         <div id="app">
+            <!-- if you choose to use v-else then it has to come after v-if  -->
+            <p v-if="user.age > user.allowedAge">
+                User One - You are old enough!
+            </p>
+            <p v-else> User One - You are NOT old enough!</p>
+
+            <p v-if="userTwo.age < userTwo.allowedAge">
+                User Two - You are NOT old enough!
+            </p>
+            <p v-else-if="checkUser">
+                Welcome back Davis!
+            </p>
+            <p v-else>You are not allowed!</p>
         </div>
     </body>
     <script>
         const { createApp, ref } = Vue;
         createApp({
             setup(){
-                
-                return {}
+                const user = ref({
+                    name: 'Anthony',
+                    age:19, 
+                    allowedAge:20
+                })
+
+                const userTwo = ref({
+                    name: 'Davis',
+                    age:23, 
+                    allowedAge:20
+                })
+
+                function checkUser(){ 
+                    return userTwo.name === 'Davis' ? true:false
+                }
+                return { user, userTwo, checkUser }
             }
         }).mount('#app')
     </script>
