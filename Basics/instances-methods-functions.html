@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+        <title>Project One</title>
+    </head>
+    <body>
+        <div id="app">
+            <p>{{ greetings }}</p>
+            <p>Is it true?: {{isItTrue ? 'Yes':'No'}}</p>
+            <p>{{ array[0] }} </p>
+            <p>{{ obj.car }} </p>
+            <p> {{ message() }} </p>
+            <p> {{ welcome() }} </p>
+        </div>
+    </body>
+    <script>
+        const { createApp } = Vue;
+        createApp({
+            setup(){
+                const date = new Date().toLocaleString(); 
+                const greetings = "Hello World!! " + date;
+                const isItTrue = true;
+                const array = ['francis','jane','anthony','davis'];
+                const obj = {car:'Ferrari'}
+                const text = () => 'Text from in line function when setting variable'
+
+                function message(){ 
+                    const randomName = array[Math.floor(Math.random()*array.length)]
+                    if(isItTrue){ 
+                        return `${greetings}, my name is ${randomName}`
+                    }
+                    return obj.car;
+                }
+
+                return {
+                    greetings,
+                    isItTrue,
+                    array, 
+                    obj,
+                    message
+                }
+            }, 
+            methods:{
+                welcome(){
+                    return 'Hello guys';
+                }
+            }
+        }).mount('#app')
+    </script>
+</html>

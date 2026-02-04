@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+        <title>Project One</title>
+    </head>
+    <body>
+        <div id="app">
+            <p>Name: {{ user.name }}</p>
+            <p>Occupation: {{ user.occupation }}</p>
+            <p>Age: {{ user.age }}</p>
+            {{ updateAge() }}
+
+        </div>
+    </body>
+    <script>
+        const { createApp, ref, reactive } = Vue;
+        createApp({
+            setup(){
+                // let user = ref({
+                //     name:'Anthony',
+                //     occupation:'Dev',
+                //     age: 20
+                // }); 
+
+                // function updateAge(){
+                //     setTimeout(()=>{
+                //         user.value.age = 25; 
+                //     },3000)
+                // }
+                
+                let user = reactive({
+                    name: 'Davis', 
+                    occupation: 'Lead Dev', 
+                    age: 30
+                });
+
+                function updateAge(){
+                    setTimeout(()=>{
+                        user.age = 25; 
+                    },3000)
+                }
+
+                return { user, updateAge}
+            }
+        }).mount('#app')
+    </script>
+</html>
